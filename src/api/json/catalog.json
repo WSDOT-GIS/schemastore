@@ -4,6 +4,16 @@
   "version": 1.0,
   "schemas": [
     {
+      "name": "ArcGIS Online Item",
+      "description": "An item registered with ArcGIS Online",
+      "url": "http://json.schemastore.org/arcgis-online-item"
+    },
+    {
+      "name": "ArcGIS web map data",
+      "description": "ArcGIS web map definition",
+      "url": "http://json.schemastore.org/arcgis-web-map-data"
+    },
+    {
       "name": "babelrc.json",
       "description": "Babel configuration file",
       "fileMatch": [ ".babelrc" ],

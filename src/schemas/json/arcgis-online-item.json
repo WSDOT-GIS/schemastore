@@ -1,0 +1,188 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ArcGIS Online item",
+  "definitions": {
+    "extent": {
+      "id": "extent",
+      "description": "Defines a rectangle by its min x and y and max x and y coordinates.",
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "number",
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    }
+  },
+  "id": "/",
+  "type": "object",
+  "properties": {
+    "id": {
+      "id": "id",
+      "type": "string"
+    },
+    "owner": {
+      "id": "owner",
+      "type": "string"
+    },
+    "created": {
+      "id": "created",
+      "type": "number",
+      "description": "Date the item was created"
+    },
+    "modified": {
+      "id": "modified",
+      "type": "number",
+      "description": "Date the item was last modified"
+    },
+    "guid": {
+      "id": "guid",
+      "type": [ "string", "null" ]
+    },
+    "name": {
+      "id": "name",
+      "type": [ "string", "null" ]
+    },
+    "title": {
+      "id": "title",
+      "type": "string"
+    },
+    "type": {
+      "id": "type",
+      "type": "string"
+    },
+    "typeKeywords": {
+      "id": "typeKeywords",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "description": {
+      "id": "description",
+      "type": [ "string", "null" ]
+    },
+    "tags": {
+      "id": "tags",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "snippet": {
+      "id": "snippet",
+      "type": [ "string", "null" ]
+    },
+    "thumbnail": {
+      "id": "thumbnail",
+      "type": "null"
+    },
+    "documentation": {
+      "id": "documentation",
+      "type": "null"
+    },
+    "extent": {
+      "$ref": "#/definitions/extent"
+    },
+    "spatialReference": {
+      "id": "spatialReference",
+      "type": "null"
+    },
+    "accessInformation": {
+      "id": "accessInformation",
+      "type": "null"
+    },
+    "licenseInfo": {
+      "id": "licenseInfo",
+      "type": "null"
+    },
+    "culture": {
+      "id": "culture",
+      "type": "string"
+    },
+    "properties": {
+      "id": "properties",
+      "type": "null"
+    },
+    "url": {
+      "id": "url",
+      "type": "null"
+    },
+    "access": {
+      "id": "access",
+      "type": "string"
+    },
+    "size": {
+      "id": "size",
+      "type": "integer"
+    },
+    "appCategories": {
+      "id": "appCategories",
+      "type": "array",
+      "items": {}
+    },
+    "industries": {
+      "id": "industries",
+      "type": "array",
+      "items": {}
+    },
+    "languages": {
+      "id": "languages",
+      "type": "array",
+      "items": {}
+    },
+    "largeThumbnail": {
+      "id": "largeThumbnail",
+      "type": "null"
+    },
+    "banner": {
+      "id": "banner",
+      "type": "null"
+    },
+    "screenshots": {
+      "id": "screenshots",
+      "type": "array",
+      "items": {}
+    },
+    "listed": {
+      "id": "listed",
+      "type": "boolean"
+    },
+    "ownerFolder": {
+      "id": "ownerFolder",
+      "type": "null"
+    },
+    "protected": {
+      "id": "protected",
+      "type": "boolean"
+    },
+    "commentsEnabled": {
+      "id": "commentsEnabled",
+      "type": "boolean"
+    },
+    "numComments": {
+      "id": "numComments",
+      "type": "integer"
+    },
+    "numRatings": {
+      "id": "numRatings",
+      "type": "integer"
+    },
+    "avgRating": {
+      "id": "avgRating",
+      "type": "integer"
+    },
+    "numViews": {
+      "id": "numViews",
+      "type": "integer"
+    },
+    "itemControl": {
+      "id": "itemControl",
+      "type": "string"
+    }
+  }
+}

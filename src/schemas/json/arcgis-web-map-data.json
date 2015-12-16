@@ -1,0 +1,131 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ArcGIS web map JSON format",
+  "id": "/",
+  "definitions": {
+    "versionNumber": {
+      "type": "string",
+      "pattern": "^\\d+(?:\\.\\d+)*$"
+    },
+    "layerType": {
+      "type": "string",
+      "enum": [
+        "ArcGISMapServiceLayer",
+        "ArcGISTiledMapServiceLayer"
+      ]
+    },
+    "baseMapLayer": {
+      "properties": {
+        "id": {
+          "id": "id",
+          "type": "string"
+        },
+        "layerType": {
+          "id": "layerType",
+          "type": "string"
+        },
+        "opacity": {
+          "id": "opacity",
+          "type": "integer"
+        },
+        "visibility": {
+          "id": "visibility",
+          "type": "boolean"
+        },
+        "url": {
+          "id": "url",
+          "type": "string"
+        }
+      }
+    },
+    "baseMap": {
+      "properties": {
+        "baseMapLayers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/baseMapLayer"
+          },
+          "additionalItems": false
+        },
+        "title": {
+          "id": "title",
+          "type": "string"
+        }
+      }
+    },
+    "operationalLayer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "id": "id",
+          "type": "string"
+        },
+        "layerType": {
+          "$ref": "#/definitions/layerType"
+        },
+        "url": {
+          "id": "url",
+          "type": "string"
+        },
+        "visibility": {
+          "id": "visibility",
+          "type": "boolean"
+        },
+        "opacity": {
+          "id": "opacity",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "title": {
+          "id": "title",
+          "type": "string"
+        },
+        "itemId": {
+          "id": "itemId",
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]+$"
+        }
+      }
+    },
+    "spatialReference": {
+      "id": "spatialReference",
+      "type": "object",
+      "properties": {
+        "wkid": {
+          "id": "wkid",
+          "type": "integer"
+        },
+        "latestWkid": {
+          "id": "latestWkid",
+          "type": "integer"
+        }
+      }
+    }
+  },
+
+  "type": "object",
+  "properties": {
+    "operationalLayers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/operationalLayer"
+      }
+    },
+    "baseMap": {
+      "$ref": "#/definitions/baseMap"
+    },
+    "spatialReference": {
+      "$ref": "#/definitions/spatialReference"
+    },
+    "authoringApp": {
+      "type": "string"
+    },
+    "authoringAppVersion": {
+      "$ref": "#/definitions/versionNumber"
+    },
+    "version": {
+      "$ref": "#/definitions/versionNumber"
+    }
+  }
+}
