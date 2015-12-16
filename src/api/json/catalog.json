@@ -4,6 +4,11 @@
   "version": 1.0,
   "schemas": [
     {
+      "name": "ArcGIS geometry",
+      "description": "ArcGIS Geometry objects definition",
+      "url": "http://json.schemastore.org/arcgis-geometry"
+    },
+    {
       "name": "ArcGIS Online Item",
       "description": "An item registered with ArcGIS Online",
       "url": "http://json.schemastore.org/arcgis-online-item"

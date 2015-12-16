@@ -1,0 +1,88 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "definitions": {
+    "spatialReference": {
+      "description": "Defines a spatial reference system.",
+      "id": "spatialReference",
+      "type": "object",
+      "properties": {
+        "wkid": {
+          "type": "integer"
+        },
+        "latestWkid": {
+          "type": "integer"
+        },
+        "vcsWkid": {
+          "type": "integer"
+        },
+        "latestVcsWkid": {
+          "type": "integer"
+        },
+        "wkt": {
+          "type": "string"
+        }
+      },
+      "minProperties": 1,
+      "maxProperties": 4
+    },
+    "extent": {
+      "id": "extent",
+      "description": "Defines a rectangle by its min x and y and max x and y coordinates.",
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "number",
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "point": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "z": {
+          "type": "number"
+        },
+        "spatialReference": {
+          "$ref": "#/definitions/spatialReference"
+        }
+      },
+      "required": [ "x", "y" ]
+    },
+    "multipoint": {
+      "type": "object",
+      "properties": {
+        "points": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": [ "number", "null" ],
+              "minItems": 2,
+              "maxItems": 4
+            }
+          }
+        },
+        "spatialReference": {
+          "$ref": "#/definitions/spatialReference"
+        },
+        "hasM": {
+          "type": "boolean"
+        },
+        "hasZ": {
+          "type": "boolean"
+        }
+      },
+      "required": ["points"]
+    }
+  }
+}

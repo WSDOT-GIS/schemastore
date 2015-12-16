@@ -19,54 +19,45 @@
     },
     "agolId": {
       "type": "string",
-      "pattern": "^[\\na-fA-F]$"
+      "pattern": "^[\\da-fA-F]+$"
     },
     "time": {
       "type": "number",
       "description": "Date / Time shown in UNIX time in milliseconds"
     }
   },
-  "id": "/",
   "type": "object",
-  "additionalProperties": false,
   "properties": {
     "id": {
-      "id": "id",
       "description": "The unique ID for this item.",
       "$ref": "#/definitions/agolId"
     },
     "owner": {
-      "id": "owner",
-      "description": "The username of the user who owns this item."
+      "description": "The username of the user who owns this item.",
+      "type": "string"
     },
     "created": {
-      "id": "created",
       "description": "The date the item was created. Shown in UNIX time in milliseconds.",
       "$ref": "#/definitions/time"
     },
     "modified": {
-      "id": "modified",
       "description": "The date the item was last modified. Shown in UNIX time in milliseconds.",
       "$ref": "#/definitions/time"
     },
     "name": {
-      "id": "name",
       "description": "The file name of the item for file types. Read-only.",
-      "type": "string"
+      "type": [ "string", "null" ]
     },
     "title": {
-      "id": "title",
       "description": "The title of the item. This is the name that's displayed to users and by which they refer to the item. Every item must have a title.",
       "type": "string"
     },
     "url": {
-      "id": "url",
       "description": "The URL for the resource represented by the item. Applies only to items that represent web-accessible resources such as map services.",
-      "type": "string",
+      "type": ["string", "null"],
       "format": "uri"
     },
     "type": {
-      "id": "type",
       "description": "The GIS content type of this item. Example types include Web Map, Map Service, Shapefile, and Web Mapping Application. See the overview section of Items and item types to get an understanding of the item type hierarchy.",
       "enum": [
         "Type",
@@ -123,7 +114,6 @@
 
     },
     "typeKeywords": {
-      "id": "typeKeywords",
       "description": "A set of keywords that further describes the type of this item. Each item is tagged with a set of type keywords that are derived based on its primary type.",
       "type": "array",
       "items": {
@@ -131,12 +121,10 @@
       }
     },
     "description": {
-      "id": "description",
       "description": "Item description.",
-      "type": "string"
+      "type": [ "string", "null" ]
     },
     "tags": {
-      "id": "tags",
       "description": "User defined tags that describe the item.",
       "type": "array",
       "items": {
@@ -144,43 +132,35 @@
       }
     },
     "snippet": {
-      "id": "snippet",
       "description": "A short summary description of the item.",
-      "type": "string"
+      "type": [ "string", "null" ]
     },
     "thumbnail": {
-      "id": "thumbnail",
       "description": "The URL to the thumbnail used for the item.",
-      "type": "string",
+      "type": [ "string", "null" ],
       "format": "uri"
     },
     "extent": {
-      "id": "extent",
       "description": "The bounding rectangle of the item. Should always be in WGS84.",
-      "$ref": "#/definitions/extent"
+      "$ref": "arcgis-geometry.json#/definitions/extent"
     },
     "spatialReference": {
-      "id": "spatialReference",
       "description": "The coordinate system of the item.",
-      "type": "object"
+      "$ref": "arcgis-geometry.json#/definitions/spatialReference"
     },
     "accessInformation": {
-      "id": "accessInformation",
       "description": "Information on the source of the item and its copyright status.",
-      "type": "string"
+      "type": [ "string", "null" ]
     },
     "licenseInfo": {
-      "id": "licenseInfo",
       "description": "Any license information or restrictions.",
-      "type": "string"
+      "type": [ "string", "null" ]
     },
     "culture": {
-      "id": "culture",
       "description": "The item locale information (language and country).",
       "type": "string"
     },
     "access": {
-      "id": "access",
       "description": "Indicates the level of access to this item: private, shared, org, or public.",
       "type": "string",
       "enum": [
@@ -191,7 +171,6 @@
       ]
     },
     "industries": {
-      "id": "industries",
       "description": "Primarily applies to industries associated with the application.",
       "type": "array",
       "items": {
@@ -199,7 +178,6 @@
       }
     },
     "languages": {
-      "id": "languages",
       "description": "Primarily applies to languages associated with the application.",
       "type": "array",
       "items": {
@@ -207,19 +185,16 @@
       }
     },
     "largeThumbnail": {
-      "id": "largeThumbnail",
       "description": "Primarily applies to thumbnails associated with an application. The URL to the thumbnail used for the application.",
-      "type": "string",
+      "type": [ "string", "null" ],
       "format": "uri"
     },
     "banner": {
-      "id": "banner",
       "description": "Primarily applies to the banner associated with an application. The URL to the banner used for the application.",
-      "type": "string",
+      "type": [ "string", "null" ],
       "format": "uri"
     },
     "screenshots": {
-      "id": "screenshots",
       "description": "Primarily applies to screenshots associated with an application. The URL to the screenshots used for the application.",
       "type": "array",
       "items": {
@@ -228,48 +203,41 @@
       }
     },
     "listed": {
-      "id": "listed",
       "description": "If true, the item is listed in the marketplace",
       "type": "boolean"
     },
     "ownerFolder": {
-      "id": "ownerFolder",
       "description": "The ID of the folder in which the owner has stored the item. The property is only returned to the item owner or the org admin.",
-      "$ref": "#/definitions/agolId"
+      "type": [
+        "string", "null"
+      ]
     },
     "size": {
-      "id": "size",
       "description": "The size of the item.",
       "type": "number"
     },
     "protected": {
-      "id": "protected",
       "description": "Protects the item from deletion. false is the default.",
       "type": "boolean",
       "default": false
     },
     "commentsEnabled": {
-      "id": "commentsEnabled",
       "description": "Indicates if comments are allowed on the item.",
       "type": "boolean"
     },
     "numComments": {
-      "id": "numComments",
       "description": "Number of comments on the item.",
       "type": "integer"
     },
     "numRatings": {
-      "id": "numRatings",
       "description": "Number of ratings on the item.",
       "type": "integer"
     },
     "avgRating": {
-      "id": "avgRating",
       "description": "Average rating. Uses a weighted average called \"Bayesian average.\"",
       "type": "number"
     },
     "numViews": {
-      "id": "numViews",
       "description": "Number of views of the item.",
       "type": "integer"
     }
