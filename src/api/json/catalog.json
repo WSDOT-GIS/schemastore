@@ -25,6 +25,12 @@
       "url": "http://json.schemastore.org/babelrc"
     },
     {
+      "name": ".bootstraprc",
+      "description": "Webpack bootstrap-loader configuration file",
+      "fileMatch": [ ".bootstraprc" ],
+      "url": "http://json.schemastore.org/bootstraprc"
+    },
+    {
       "name": "bower.json",
       "description": "Bower package description file",
       "fileMatch": [ "bower.json", ".bower.json" ],
@@ -108,6 +114,11 @@
       "url": "http://json.schemastore.org/eslintrc"
     },
     {
+      "name": "geojson.json",
+      "description": "GeoJSON format for representing geographic data.",
+      "url": "http://json.schemastore.org/geojson"
+    },
+    {
       "name": "global.json",
       "description": "ASP.NET global configuration file",
       "fileMatch": [ "global.json" ],
@@ -150,10 +161,28 @@
       "url": "http://json.schemastore.org/grunt-task"
     },
     {
+      "name": "haxelib.json",
+      "description": "Haxelib manifest",
+      "fileMatch": [ "haxelib.json" ],
+      "url": "http://json.schemastore.org/haxelib"
+    },
+    {
       "name": "host-meta.json",
       "description": "Schema for host-meta JDR files",
       "fileMatch": [ "host-meta.json" ],
       "url": "http://json.schemastore.org/host-meta"
+    },
+    {
+      "name": ".htmlhintrc",
+      "description": "HTML Hint configuration file",
+      "fileMatch": [ ".htmlhintrc" ],
+      "url": "http://json.schemastore.org/htmlhint"
+    },
+    {
+      "name": ".jsbeautifyrc",
+      "description": "js-beautify configuration file",
+      "fileMatch": [ ".jsbeautifyrc" ],
+      "url": "http://json.schemastore.org/jsbeautifyrc"
     },
     {
       "name": ".jscsrc",
@@ -166,6 +195,12 @@
       "description": "JSHint configuration file",
       "fileMatch": [ ".jshintrc" ],
       "url": "http://json.schemastore.org/jshintrc"
+    },
+    {
+      "name": ".jsinspectrc",
+      "description": "JSInspect configuration file",
+      "fileMatch": [ ".jsinspectrc" ],
+      "url": "http://json.schemastore.org/jsinspectrc"
     },
     {
       "name": "*.jsonld",
@@ -189,6 +224,12 @@
       "name": "Microsoft Band Web Tile",
       "description": "Microsoft Band Web Tile manifest file",
       "url": "http://json.schemastore.org/band-manifest"
+    },
+    {
+      "name": ".modernizrrc",
+      "description": "Webpack modernizr-loader configuration file",
+      "fileMatch": [ ".modernizrrc" ],
+      "url": "http://json.schemastore.org/modernizrrc"
     },
     {
       "name": "news in JSON",
@@ -215,6 +256,12 @@
       "description": "Umbraco package configuration file",
       "fileMatch": [ "package.manifest" ],
       "url": "http://json.schemastore.org/package.manifest"
+    },
+    {
+      "name": "pattern.json",
+      "description": "Patternplate pattern manifest file",
+      "fileMatch": [ "pattern.json" ],
+      "url": "http://json.schemastore.org/pattern"
     },
     {
       "name": "project.json",
@@ -270,7 +317,10 @@
       "name": "sarif.json",
       "description": "Static Analysis Results Interchange Format (SARIF)",
       "fileMatch": [ "*.sarif,*.sarif.json" ],
-      "url": "http://json.schemastore.org/sarif"
+      "url": "http://json.schemastore.org/sarif",
+      "versions": {
+        "1.0.0": "http://json.schemastore.org/sarif-1.0.0"
+      }
     },
     {
       "name": "Schema Catalog",
@@ -324,6 +374,18 @@
       "description": "TypeScript Lint configuration file",
       "fileMatch": [ "tslint.json" ],
       "url": "http://json.schemastore.org/tslint"
+    },
+    {
+      "name": "typings.json",
+      "description": "Typings TypeScript definitions manager definition file",
+      "fileMatch": [ "typings.json" ],
+      "url": "http://json.schemastore.org/typings"
+    },
+    {
+      "name": "typingsrc.json",
+      "description": "Typings TypeScript definitions manager configuration file",
+      "fileMatch": [ ".typingsrc" ],
+      "url": "http://json.schemastore.org/typingsrc"
     },
     {
       "name": "Web Manifest",

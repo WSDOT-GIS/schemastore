@@ -30,7 +30,7 @@
 					"description": "Enforces rules for single-line comments",
 					"type": "array",
 					"items": {
-						"enum": [ true, false, "check-space", "check-lowercase" ]
+						"enum": [ true, false, "check-space", "check-lowercase", "check-uppercase" ]
 					}
 				},
 				"curly": {
@@ -53,8 +53,11 @@
 					}
 				},
 				"interface-name": {
-					"description": "Enforces the rule that interface names must begin with a capital 'I'",
-					"type": "boolean"
+					"description": "Enforces the rule that interface names must or must not begin with a capital 'I'",
+					"type": "array",
+					"items": {
+						"enum": [ true, false, "always-prefix", "never-prefix" ]
+					}
 				},
 				"jsdoc-format": {
 					"description": "Enforces basic format rules for jsdoc comments",
@@ -77,7 +80,11 @@
 				},
 				"member-access": {
 					"description": "Enforces using explicit visibility on class members",
-					"type": "boolean"
+					"type": [ "array", "boolean" ],
+					"items": {
+						"type": [ "boolean", "string" ],
+						"enum": [ true, false, "check-accessor", "check-constructor" ]
+					}
 				},
 				"member-ordering": {
 					"description": "Enforces chosen member ordering",
@@ -106,7 +113,29 @@
 					"description": "Disallows access to the specified functions on console",
 					"type": "array",
 					"items": {
-						"enum": [ true, false, "debug", "info", "time", "timeEnd", "trace" ]
+						"enum": [
+							true,
+							false,
+							"assert",
+							"count",
+							"debug",
+							"dir",
+							"dirxml",
+							"error",
+							"group",
+							"groupCollapsed",
+							"groupEnd",
+							"info",
+							"log",
+							"profile",
+							"profileEnd",
+							"table",
+							"time",
+							"timeEnd",
+							"timeStamp",
+							"trace",
+							"warn"
+						]
 					}
 				},
 				"no-consecutive-blank-lines": {
@@ -186,7 +215,7 @@
 					"type": [ "array", "boolean" ],
 					"items": {
 						"type": [ "boolean", "string" ],
-						"enum": [ true, false, "check-parameters" ]
+						"enum": [ true, false, "check-parameters", "react" ]
 					}
 				},
 				"no-use-before-declare": {
@@ -205,14 +234,14 @@
 					"description": "Enforces the specified tokens to be on the same line as the expression preceding it",
 					"type": "array",
 					"items": {
-						"enum": [ true, false, "check-open-brace", "check-catch", "check-else", "check-whitespace" ]
+						"enum": [ true, false, "check-open-brace", "check-catch", "check-finally", "check-else", "check-whitespace" ]
 					}
 				},
 				"quotemark": {
 					"description": "Enforces consistent single or double quoted string literals",
 					"type": "array",
 					"items": {
-						"enum": [ true, false, "double", "single", "avoid-escape" ]
+						"enum": [ true, false, "double", "single", "jsx-double", "jsx-single", "avoid-escape" ]
 					}
 				},
 				"radix": {
@@ -221,7 +250,10 @@
 				},
 				"semicolon": {
 					"description": "Enforces semicolons at the end of every statement",
-					"type": "boolean"
+          "type": "array",
+          "items": {
+            "enum": [ true, false, "always", "never"]
+          }
 				},
 				"sort-object-literal-keys": {
 				  "description": "Checks that keys in object literals are declared in alphabetical order",
@@ -233,8 +265,9 @@
 				},
 				"triple-equals": {
 					"description": "Enforces === and !== in favor of == and !=",
-					"type": "array",
+					"type": [ "array", "boolean" ],
 					"items": {
+						"type": [ "boolean", "string" ],
 						"enum": [ true, false, "allow-null-check" ]
 					}
 				},
@@ -242,7 +275,16 @@
 					"description": "Enforces type definitions to exist",
 					"type": "array",
 					"items": {
-						"enum": [ true, false, "call-signature", "parameter", "property-declaration", "variable-declaration", "member-variable-declaration" ]
+						"enum": [
+						  true,
+						  false,
+						  "call-signature",
+              "parameter",
+              "arrow-parameter",
+              "property-declaration",
+              "variable-declaration",
+              "member-variable-declaration"
+						]
 					}
 				},
 				"typedef-whitespace": {
@@ -263,7 +305,7 @@
 					"description": "Allows only camelCased or UPPER_CASED variable names",
 					"type": [ "array", "boolean" ],
 					"items": {
-						"enum": [ true, false, "allow-leading-underscore", "allow-trailing-underscore" ]
+						"enum": [ true, false, "check-format", "allow-leading-underscore", "allow-trailing-underscore", "ban-keywords" ]
 					}
 				},
 				"whitespace": {

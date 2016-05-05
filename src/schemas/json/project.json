@@ -6,6 +6,7 @@
 
 	"definitions": {
 		"compilationOptions": {
+			"description": "Options that are passed to the compiler.",
 			"type": "object",
 			"properties": {
 				"define": {
@@ -31,6 +32,10 @@
 					"type": "boolean",
 					"default": false
 				},
+				"platform": {
+				  "type": "string",
+				  "enum": [ "anycpu", "anycpu32bitpreferred", "ARM", "x86", "x64", "Itanium" ]
+				},
 				"languageVersion": {
 					"type": "string",
 					"enum": [ "csharp1", "csharp2", "csharp3", "csharp4", "csharp5", "csharp6", "experimental" ]
@@ -42,9 +47,20 @@
 					"type": "boolean",
 					"default": false
 				},
-				"useOssSigning": {
+				"publicSign": {
 					"type": "boolean",
 					"default": false
+				},
+				"debugType": {
+					"type": "string",
+					"enum": [ "portable", "full", "none" ]
+				},
+				"preserveCompilationContext": {
+				  "type": "boolean",
+				  "description": "Set this option to preserve reference assemblies and other context data to allow for runtime compilation"
+				},
+				"outputName": {
+					"type": "string"
 				}
 			}
 		},
@@ -53,8 +69,28 @@
 			"properties": {
 				"dependencies": { "$ref": "#/definitions/dependencies" },
 				"compilationOptions": { "$ref": "#/definitions/compilationOptions" },
-				"frameworkAssemblies": { "$ref": "#/definitions/dependencies" }
+				"frameworkAssemblies": { "$ref": "#/definitions/dependencies" },
+				"imports": {
+				  "type": [ "string", "array" ],
+				  "description": "Allow packages supporting these frameworks to be installed in this target, regardless of the compatibility rules.",
+			    "items": {
+				    "type": "string"
+			    }
+				}
 			}
+		},
+		"libraryIncludeFlag": {
+			"type": "string",
+			"enum": [ "all", "runtime", "compile", "build", "contentFiles", "native", "analyzers", "none" ]
+		},
+		"libraryIncludeFlags": {
+			"oneOf": [
+				{ "$ref": "#/definitions/libraryIncludeFlag" },
+				{
+					"type": "array",
+					"items": { "$ref": "#/definitions/libraryIncludeFlag" }
+				}
+			]
 		},
 		"dependencies": {
 			"type": "object",
@@ -67,15 +103,25 @@
 					"type": {
 						"type": "string",
 						"default": "default",
-						"enum": [ "default", "build" ]
+						"enum": [ "default", "build", "platform" ]
 					},
 					"target": {
-					  "type": "string",
-					  "description": "Restrict this dependency to matching only a Project or a Package",
-					  "enum": [ "project", "package" ]
+						"type": "string",
+						"description": "Restrict this dependency to matching only a Project or a Package",
+						"enum": [ "project", "package" ]
+					},
+					"include": {
+						"$ref": "#/definitions/libraryIncludeFlags"
+					},
+					"exclude": {
+						"$ref": "#/definitions/libraryIncludeFlags"
+					},
+					"suppressParent": {
+						"$ref": "#/definitions/libraryIncludeFlags"
 					}
 				}
-			}
+			},
+			"description": "Each dependency is defined by a name and a version. Dependencies are resolved from NuGet feeds defined by your package sources and projects located in the directories specified by the 'global.json' file."
 		},
 		"script": {
 			"type": [ "string", "array" ],
@@ -88,6 +134,7 @@
 
 	"properties": {
 		"authors": {
+			"description": "The author of the application.",
 			"type": "array",
 			"items": {
 				"type": "string",
@@ -96,8 +143,8 @@
 		},
 
 		"packInclude": {
-		  "description": "Pairs of destination folders and glob patterns specifying additional files to include in the output NuGet package. (data type: JSON map). Example: { \"tools/\": \"tools/**/*.*\" }",
-		  "type": "object"
+			"description": "Pairs of destination folders and glob patterns specifying additional files to include in the output NuGet package. (data type: JSON map). Example: { \"tools/\": \"tools/**/*.*\" }",
+			"type": "object"
 		},
 
 		"publishExclude": {
@@ -239,6 +286,10 @@
 			},
 			"default": [ "bin/**", "obj/**", "**/*.xproj" ]
 		},
+		"testRunner": {
+		  "description": "The name of the test runner to use with this project",
+		  "type": "string"
+		},
 
 		"commands": {
 			"type": "object",
@@ -287,9 +338,9 @@
 			"type": "string"
 		},
 		"summary": {
-				"description": "A short description of the package.",
-				"type": "string"
-			},
+			"description": "A short description of the package.",
+			"type": "string"
+		},
 		"tags": {
 			"description": "A space-delimited list of tags and keywords that describe the package.",
 			"type": "array",
@@ -315,6 +366,7 @@
 			"type": "string"
 		},
 		"frameworks": {
+		  "description": "Target frameworks that will be built, and dependencies that are specific to the build of this project for that framework.",
 			"type": "object",
 			"additionalProperties": { "$ref": "#/definitions/configType" }
 		},
@@ -333,6 +385,10 @@
 					"type": "string",
 					"enum": [ "git" ],
 					"default": "git"
+				},
+				"url": {
+					"type": "string",
+					"format": "uri"
 				}
 			},
 			"additionalProperties": {
@@ -357,6 +413,18 @@
 		"version": {
 			"description": "The version of the project/package. Examples: 1.2.3, 1.2.3-beta, 1.2.3-*",
 			"type": "string"
+		},
+		"tools": {
+			"description": "Project-specific command line tools accessible when in the project.json directory.",
+			"type": "object",
+			"additionalProperties": {
+				"type": [ "string", "object" ],
+				"properties": {
+					"version": {
+						"type": "string"
+					}
+				}
+			}
 		}
 	}
 }
